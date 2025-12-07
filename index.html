@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Student Growth Tracker (3 Students + Benchmark)</title>
+  <title>Students Growth Tracker (3 Students + Benchmark)</title>
   <style>
     :root{
       --bg: #0b1020;
@@ -55,11 +55,11 @@
 <body>
   <div class="container">
     <header>
-      <h1>Student Growth Tracker</h1>
+      <h1>Students Growth Tracker</h1>
       <div class="legend">
-        <span class="tag"><span class="dot" style="background:#7c9cff"></span>Student A</span>
-        <span class="tag"><span class="dot" style="background:#55d6a9"></span>Student B</span>
-        <span class="tag"><span class="dot" style="background:#ffd166"></span>Student C</span>
+        <span class="tag"><span class="dot" style="background:#7c9cff"></span>Shantha Vardhan</span>
+        <span class="tag"><span class="dot" style="background:#55d6a9"></span>Sairam</span>
+        <span class="tag"><span class="dot" style="background:#ffd166"></span>Umesh</span>
         <span class="tag"><span class="dot" style="background:#ff7a8a"></span>Benchmark</span>
       </div>
     </header>
@@ -79,9 +79,9 @@
             <div class="field"><label>Label</label><input id="label" required /></div>
           </div>
           <div class="row">
-            <div class="field"><label>Student A</label><input id="s1" type="number" required></div>
-            <div class="field"><label>Student B</label><input id="s2" type="number" required></div>
-            <div class="field"><label>Student C</label><input id="s3" type="number" required></div>
+            <div class="field"><label>Shantha Vardhan</label><input id="s1" type="number" required></div>
+            <div class="field"><label>Sairam</label><input id="s2" type="number" required></div>
+            <div class="field"><label>Umesh</label><input id="s3" type="number" required></div>
             <div class="field"><label>Benchmark</label><input id="bm" type="number" required></div>
           </div>
           <button>Add point</button>
@@ -103,9 +103,9 @@ let data = JSON.parse(localStorage.getItem("student-data") || `{
 
 const ctx=document.getElementById("chart");
 let chart=new Chart(ctx,{type:"line",data:{labels:data.labels,datasets:[
-  {label:"Student A",data:data.s1,borderColor:"#7c9cff",tension:.3},
-  {label:"Student B",data:data.s2,borderColor:"#55d6a9",tension:.3},
-  {label:"Student C",data:data.s3,borderColor:"#ffd166",tension:.3},
+  {label:"Shantha Vardhan",data:data.s1,borderColor:"#7c9cff",tension:.3},
+  {label:"Sairam",data:data.s2,borderColor:"#55d6a9",tension:.3},
+  {label:"Umesh",data:data.s3,borderColor:"#ffd166",tension:.3},
   {label:"Benchmark",data:data.bm,borderColor:"#ff7a8a",borderDash:[5,5],tension:.3}
 ]},options:{responsive:true,maintainAspectRatio:false}});
 
