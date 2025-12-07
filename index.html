@@ -4,8 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Student Growth Tracker (3 Students + Benchmark)</title>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <style>
     :root{
       --bg: #0b1020;
@@ -20,313 +18,126 @@
       --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(1000px 600px at 20% 0%, #121936 0,#0b1020 60%, #0b1020 100%);
+      margin:0;
+      font-family: system-ui;
+      background: radial-gradient(1000px 600px at 20% 0%, #121936 0,#0b1020 60%);
       color: var(--text);
     }
     .container{max-width:1100px;margin:32px auto;padding:0 16px}
-    header{
-      display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px
-    }
-    header h1{font-size:clamp(20px,3vw,28px);margin:0;font-weight:700;letter-spacing:.3px}
-    header .sub{color:var(--muted);font-size:14px}
-
-    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
-    @media (max-width: 920px){.grid{grid-template-columns:1fr;}}
-
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding:16px; box-shadow: var(--shadow)}
-    .card h2{margin:4px 0 10px; font-size:18px}
-    .row{display:flex;gap:12px;flex-wrap:wrap}
-    .field{flex:1; min-width:180px}
-    label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px 2px}
-    input,button,select,textarea{
-      background:#0f1530; color:var(--text); border:1px solid rgba(255,255,255,.08);
-      border-radius:12px; padding:10px 12px; font: inherit; outline: none;
-    }
-    input:focus, select:focus, textarea:focus{border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124,156,255,.15)}
-    button{cursor:pointer; border:1px solid rgba(255,255,255,.10)}
-    .btn-row{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{padding:10px 14px;border-radius: 12px; font-weight:600; letter-spacing:.2px}
-    .btn.primary{background: linear-gradient(180deg, #4c6fff, #3456f0); border: none}
-    .btn.ghost{background:transparent}
-    .btn.danger{background: linear-gradient(180deg,#ff6b7a,#f04759); border: none}
-    .muted{color:var(--muted)}
-    .switch{display:flex;align-items:center;gap:8px}
-
-    .footer{margin-top:14px;font-size:12px;color:var(--muted)}
-    .tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#0f1530;border:1px solid rgba(255,255,255,.08);}
+    header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+    header h1{margin:0;font-size:28px}
     .legend{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#0f1530;border:1px solid rgba(255,255,255,.08)}
     .dot{width:10px;height:10px;border-radius:50%}
 
-    /* Table */
-    table{width:100%;border-collapse: collapse;}
-    th,td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left;font-size:14px}
-    th{color:var(--muted);font-weight:600}
-    tr:hover td{background:rgba(255,255,255,.03)}
-    .table-wrap{max-height:260px;overflow:auto;border-radius:12px;border:1px solid rgba(255,255,255,.06)}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
 
-    .notice{background: linear-gradient(180deg, rgba(92,225,190,.12), rgba(92,225,190,.06)); border:1px solid rgba(92,225,190,.25); color:#c7ffee;padding:10px 12px;border-radius:12px; font-size:13px}
+    .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+    h2{margin-top:0}
 
-    .hidden{display:none}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .field{flex:1;min-width:150px}
+    label{font-size:12px;color:var(--muted)}
+    input,button{padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#0f1530;color:var(--text)}
+    button{cursor:pointer}
 
-    .chart-wrap{position:relative;margin-top:8px;height:280px;}
+    .chart-wrap{position:relative;margin-top:8px;height:280px;border-radius:12px}
     #chart{width:100% !important;height:100% !important;}
+
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}
+    th{color:var(--muted)}
+    tr:hover td{background:rgba(255,255,255,.05)}
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <div>
-        <h1>Student Growth Tracker</h1>
-        <div class="sub">3 students + 1 benchmark • Live line chart • Works on GitHub Pages • Data saved in your browser</div>
-      </div>
+      <h1>Student Growth Tracker</h1>
       <div class="legend">
-        <span class="tag"><span class="dot" style="background:#7c9cff"></span> Student A</span>
-        <span class="tag"><span class="dot" style="background:#55d6a9"></span> Student B</span>
-        <span class="tag"><span class="dot" style="background:#ffd166"></span> Student C</span>
-        <span class="tag"><span class="dot" style="background:#ff7a8a"></span> Benchmark</span>
+        <span class="tag"><span class="dot" style="background:#7c9cff"></span>Student A</span>
+        <span class="tag"><span class="dot" style="background:#55d6a9"></span>Student B</span>
+        <span class="tag"><span class="dot" style="background:#ffd166"></span>Student C</span>
+        <span class="tag"><span class="dot" style="background:#ff7a8a"></span>Benchmark</span>
       </div>
     </header>
 
     <div class="grid">
-      <!-- Chart Card -->
       <section class="card">
         <h2>Growth Chart</h2>
-        <div class="row" style="align-items:center;justify-content:space-between;gap:8px">
-          <div class="switch">
-            <input type="checkbox" id="indexMode">
-            <label for="indexMode">Index mode (base = 100)</label>
-          </div>
-          <div class="switch">
-            <input type="checkbox" id="smooth" checked>
-            <label for="smooth">Smooth lines</label>
-          </div>
-        </div>
         <div class="chart-wrap">
           <canvas id="chart"></canvas>
         </div>
-        <div class="footer">Tip: toggle series by clicking labels in the chart legend. Your data auto‑saves to <span class="muted">localStorage</span>.</div>
       </section>
 
-      <!-- Form Card -->
       <section class="card">
         <h2>Add/Update Scores</h2>
-        <form id="pointForm">
+        <form id="form">
           <div class="row">
-            <div class="field">
-              <label for="label">Assessment label / date</label>
-              <input id="label" placeholder="e.g., 2025‑11‑09 or Test 1" required />
-            </div>
+            <div class="field"><label>Label</label><input id="label" required /></div>
           </div>
           <div class="row">
-            <div class="field"><label for="s1">Student A</label><input id="s1" type="number" step="0.01" placeholder="e.g., 68" required></div>
-            <div class="field"><label for="s2">Student B</label><input id="s2" type="number" step="0.01" placeholder="e.g., 74" required></div>
-            <div class="field"><label for="s3">Student C</label><input id="s3" type="number" step="0.01" placeholder="e.g., 81" required></div>
-            <div class="field"><label for="bm">Benchmark</label><input id="bm" type="number" step="0.01" placeholder="e.g., 75" required></div>
+            <div class="field"><label>Student A</label><input id="s1" type="number" required></div>
+            <div class="field"><label>Student B</label><input id="s2" type="number" required></div>
+            <div class="field"><label>Student C</label><input id="s3" type="number" required></div>
+            <div class="field"><label>Benchmark</label><input id="bm" type="number" required></div>
           </div>
-          <div class="btn-row" style="margin-top:10px">
-            <button class="btn primary" type="submit">Add data point</button>
-            <button class="btn ghost" type="button" id="deleteLast">Delete last</button>
-            <button class="btn ghost" type="button" id="clearAll">Reset</button>
-          </div>
+          <button>Add point</button>
         </form>
-
-        <div class="footer" style="margin-top:12px">
-          <div class="notice">You can export/import below to back up or move your data across devices.</div>
-        </div>
-
-        <div class="row" style="margin-top:10px">
-          <button class="btn ghost" id="exportBtn">Export JSON</button>
-          <input type="file" id="importFile" accept="application/json" class="hidden" />
-          <button class="btn ghost" id="importBtn">Import JSON</button>
-        </div>
       </section>
 
-      <!-- Table Card -->
       <section class="card" style="grid-column:1/-1">
         <h2>Data Table</h2>
-        <div class="table-wrap">
-          <table id="dataTable">
-            <thead>
-              <tr>
-                <th style="width:26%">Label</th>
-                <th>Student A</th>
-                <th>Student B</th>
-                <th>Student C</th>
-                <th>Benchmark</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+        <table id="table"><thead><tr><th>Label</th><th>A</th><th>B</th><th>C</th><th>BM</th></tr></thead><tbody></tbody></table>
       </section>
     </div>
   </div>
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
-  <script>
-    // ----- Storage helpers -----
-    const STORAGE_KEY = 'student-growth-tracker-v1';
-    const $ = (sel) => document.querySelector(sel);
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let data = JSON.parse(localStorage.getItem("student-data") || `{
+  "labels":[],"s1":[],"s2":[],"s3":[],"bm":[]
+}`);
 
-    function getData(){
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(!raw){
-        // seed with an example (can delete)
-        return {
-          labels: ["Day 1", "Day 2", "Day 3"],
-          s1: [60, 66, 72],
-          s2: [55, 63, 70],
-          s3: [48, 59, 65],
-          bm: [62, 64, 67]
-        }
-      }
-      try { return JSON.parse(raw) } catch { return {labels:[], s1:[], s2:[], s3:[], bm:[]} }
-    }
-    function setData(d){ localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+const ctx=document.getElementById("chart");
+let chart=new Chart(ctx,{type:"line",data:{labels:data.labels,datasets:[
+  {label:"Student A",data:data.s1,borderColor:"#7c9cff",tension:.3},
+  {label:"Student B",data:data.s2,borderColor:"#55d6a9",tension:.3},
+  {label:"Student C",data:data.s3,borderColor:"#ffd166",tension:.3},
+  {label:"Benchmark",data:data.bm,borderColor:"#ff7a8a",borderDash:[5,5],tension:.3}
+]},options:{responsive:true,maintainAspectRatio:false}});
 
-    // ----- Indexing (base=100) -----
-    function toIndex(arr){
-      if(!arr.length) return [];
-      const base = Number(arr[0]) || 1;
-      return arr.map(v => base === 0 ? 0 : (Number(v) / base) * 100);
-    }
+function renderTable(){
+  const tbody=document.querySelector("#table tbody");
+  tbody.innerHTML="";
+  data.labels.forEach((l,i)=>{
+    tbody.innerHTML+=`<tr><td>${l}</td><td>${data.s1[i]}</td><td>${data.s2[i]}</td><td>${data.s3[i]}</td><td>${data.bm[i]}</td></tr>`;
+  });
+}
+renderTable();
 
-    // ----- Chart Setup -----
-    const ctx = document.getElementById('chart');
-    let state = getData();
+form.onsubmit=e=>{
+  e.preventDefault();
+  const l=label.value;
+  data.labels.push(l);
+  data.s1.push(+s1.value);
+  data.s2.push(+s2.value);
+  data.s3.push(+s3.value);
+  data.bm.push(+bm.value);
+  localStorage.setItem("student-data",JSON.stringify(data));
 
-    const palette = {
-      s1: '#7c9cff',
-      s2: '#55d6a9',
-      s3: '#ffd166',
-      bm: '#ff7a8a'
-    };
+  chart.data.labels=data.labels;
+  chart.data.datasets[0].data=data.s1;
+  chart.data.datasets[1].data=data.s2;
+  chart.data.datasets[2].data=data.s3;
+  chart.data.datasets[3].data=data.bm;
+  chart.update();
 
-    let chart;
-    function buildDatasets(indexMode, smooth){
-      const s1 = indexMode ? toIndex(state.s1) : state.s1;
-      const s2 = indexMode ? toIndex(state.s2) : state.s2;
-      const s3 = indexMode ? toIndex(state.s3) : state.s3;
-      const bm = indexMode ? toIndex(state.bm) : state.bm;
-      const tension = smooth ? 0.35 : 0;
-      return [
-        { label: 'Student A', data: s1, borderColor: palette.s1, backgroundColor: palette.s1 + '33', borderWidth: 3, tension, pointRadius: 3, fill:false },
-        { label: 'Student B', data: s2, borderColor: palette.s2, backgroundColor: palette.s2 + '33', borderWidth: 3, tension, pointRadius: 3, fill:false },
-        { label: 'Student C', data: s3, borderColor: palette.s3, backgroundColor: palette.s3 + '33', borderWidth: 3, tension, pointRadius: 3, fill:false },
-        { label: 'Benchmark', data: bm, borderColor: palette.bm, backgroundColor: palette.bm + '33', borderWidth: 3, borderDash: [6,4], tension, pointRadius: 3, fill:false },
-      ];
-    }
-
-    function renderChart(){
-      const indexMode = $('#indexMode').checked;
-      const smooth = $('#smooth').checked;
-      if(chart){ chart.destroy(); }
-      chart = new Chart(ctx, {
-        type: 'line',
-        data: { labels: state.labels, datasets: buildDatasets(indexMode, smooth) },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          interaction: { mode: 'nearest', intersect: false },
-          plugins: {
-            legend: { labels: { color: '#dfe6f3' } },
-            tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}` } }
-          },
-          scales: {
-            x: { ticks: { color: '#c6ccda' }, grid: { color: 'rgba(255,255,255,.07)' } },
-            y: { ticks: { color: '#c6ccda' }, grid: { color: 'rgba(255,255,255,.07)' } }
-          }
-        }
-      });
-    }
-
-    // ----- Table rendering -----
-    function renderTable(){
-      const tbody = document.querySelector('#dataTable tbody');
-      tbody.innerHTML = '';
-      for(let i=0;i<state.labels.length;i++){
-        const tr = document.createElement('tr');
-        const cells = [state.labels[i], state.s1[i], state.s2[i], state.s3[i], state.bm[i]];
-        cells.forEach(c => {
-          const td = document.createElement('td');
-          td.textContent = c ?? '';
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-      }
-    }
-
-    function sync(){ setData(state); renderChart(); renderTable(); }
-
-    // ----- Form handlers -----
-    document.getElementById('pointForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const label = document.getElementById('label').value.trim();
-      const s1 = parseFloat(document.getElementById('s1').value);
-      const s2 = parseFloat(document.getElementById('s2').value);
-      const s3 = parseFloat(document.getElementById('s3').value);
-      const bm = parseFloat(document.getElementById('bm').value);
-      if(!label || [s1,s2,s3,bm].some(v => Number.isNaN(v))){
-        alert('Please fill label and all numeric scores.');
-        return;
-      }
-      state.labels.push(label);
-      state.s1.push(s1); state.s2.push(s2); state.s3.push(s3); state.bm.push(bm);
-      e.target.reset();
-      sync();
-    });
-
-    document.getElementById('deleteLast').addEventListener('click', () => {
-      if(!state.labels.length) return;
-      state.labels.pop(); state.s1.pop(); state.s2.pop(); state.s3.pop(); state.bm.pop();
-      sync();
-    });
-
-    document.getElementById('clearAll').addEventListener('click', () => {
-      if(confirm('Clear all data? This cannot be undone.')){
-        state = { labels: [], s1: [], s2: [], s3: [], bm: [] };
-        sync();
-      }
-    });
-
-    document.getElementById('indexMode').addEventListener('change', renderChart);
-    document.getElementById('smooth').addEventListener('change', renderChart);
-
-    // ----- Export / Import -----
-    document.getElementById('exportBtn').addEventListener('click', () => {
-      const blob = new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'student-growth-data.json'; a.click();
-      setTimeout(()=> URL.revokeObjectURL(url), 1000);
-    });
-
-    const importFile = document.getElementById('importFile');
-    document.getElementById('importBtn').addEventListener('click', () => importFile.click());
-    importFile.addEventListener('change', (e) => {
-      const file = e.target.files?.[0];
-      if(!file) return;
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        try{
-          const obj = JSON.parse(String(ev.target.result));
-          if(obj && Array.isArray(obj.labels) && Array.isArray(obj.s1) && Array.isArray(obj.s2) && Array.isArray(obj.s3) && Array.isArray(obj.bm)){
-            state = obj; sync();
-          } else { alert('Invalid JSON format.'); }
-        } catch(err){ alert('Could not parse JSON.'); }
-      };
-      reader.readAsText(file);
-      // clear input so same file can be chosen again later
-      e.target.value = '';
-    });
-
-    // ----- Init -----
-    sync();
-  </script>
+  renderTable();
+  form.reset();
+};
+</script>
 </body>
 </html>
