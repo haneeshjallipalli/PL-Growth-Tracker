@@ -71,6 +71,9 @@
     .notice{background: linear-gradient(180deg, rgba(92,225,190,.12), rgba(92,225,190,.06)); border:1px solid rgba(92,225,190,.25); color:#c7ffee;padding:10px 12px;border-radius:12px; font-size:13px}
 
     .hidden{display:none}
+
+    .chart-wrap{position:relative;margin-top:8px;height:280px;}
+    #chart{width:100% !important;height:100% !important;}
   </style>
 </head>
 <body>
@@ -102,7 +105,9 @@
             <label for="smooth">Smooth lines</label>
           </div>
         </div>
-        <canvas id="chart" height="110"></canvas>
+        <div class="chart-wrap">
+          <canvas id="chart"></canvas>
+        </div>
         <div class="footer">Tip: toggle series by clicking labels in the chart legend. Your data auto‑saves to <span class="muted">localStorage</span>.</div>
       </section>
 
