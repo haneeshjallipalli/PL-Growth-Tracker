@@ -1,289 +1,226 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Progress Tracker (3 Students + Benchmark)</title>
-  <style>
-    :root{
-      --bg: #0b1020;
-      --card: #12172a;
-      --muted: #9aa3b2;
-      --text: #e6eaf2;
-      --accent: #7c9cff;
-      --success: #55d6a9;
-      --warning: #ffd166;
-      --danger: #ff7a8a;
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: system-ui;
-      background: radial-gradient(1000px 600px at 20% 0%, #121936 0,#0b1020 60%);
-      color: var(--text);
-    }
-    .container{max-width:1100px;margin:32px auto;padding:0 16px}
-    header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px}
-    header h1{margin:0;font-size:28px}
-    .legend{display:flex;gap:8px;flex-wrap:wrap}
-    .tag{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#0f1530;border:1px solid rgba(255,255,255,.08)}
-    .dot{width:10px;height:10px;border-radius:50%}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Progress Tracker (3 Students + Benchmark)</title>
 
-    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    <style>
+        :root{
+          --bg:#0b1020;
+          --card:#12172a;
+          --muted:#9aa3b2;
+          --text:#e6eaf2;
+          --radius:16px;
+          --shadow:0 10px 30px rgba(0,0,0,.35);
+        }
+        *{box-sizing:border-box}
+        body{
+          margin:0;
+          font-family:system-ui;
+          background:radial-gradient(1000px 600px at 20% 0%, #121936 0,#0b1020 60%);
+          color:var(--text);
+        }
+        .container{max-width:1100px;margin:32px auto;padding:0 16px}
+        header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+        header h1{margin:0;font-size:28px}
 
-    .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-    h2{margin-top:0}
+        .legend{display:flex;gap:8px;flex-wrap:wrap}
+        .tag{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#0f1530;border:1px solid rgba(255,255,255,.08)}
+        .dot{width:10px;height:10px;border-radius:50%}
 
-    .row{display:flex;gap:12px;flex-wrap:wrap}
-    .field{flex:1;min-width:150px}
-    label{font-size:12px;color:var(--muted)}
-    input,button{
-      padding:10px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.08);
-      background:#0f1530;
-      color:var(--text);
-    }
-    button{cursor:pointer}
+        .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:16px}
+        @media(max-width:900px){.grid{grid-template-columns:1fr}}
 
-    .chart-wrap{position:relative;margin-top:8px;height:280px;border-radius:12px}
-    #chart{width:100% !important;height:100% !important;}
+        .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+        h2{margin-top:0}
 
-    table{width:100%;border-collapse:collapse;margin-top:10px}
-    th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}
-    th{color:var(--muted)}
-    tr:hover td{background:rgba(255,255,255,.05)}
-  </style>
+        .row{display:flex;gap:12px;flex-wrap:wrap}
+        .field{flex:1;min-width:140px}
+        label{font-size:12px;color:var(--muted)}
+        input,button{padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#0f1530;color:var(--text)}
+        button{cursor:pointer}
+
+        .chart-wrap{position:relative;height:280px}
+        #chart{width:100%!important;height:100%!important}
+
+        table{width:100%;border-collapse:collapse}
+        th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}
+        th{color:var(--muted)}
+    </style>
 </head>
+
 <body>
-  <div class="container">
+<div class="container">
+
     <header>
-      <h1>Progress Tracker</h1>
-      <div class="legend">
-        <span class="tag"><span class="dot" style="background:#7c9cff"></span>Shantha Vardhan</span>
-        <span class="tag"><span class="dot" style="background:#55d6a9"></span>Sairam</span>
-        <span class="tag"><span class="dot" style="background:#ffd166"></span>Umesh</span>
-        <span class="tag"><span class="dot" style="background:#ff7a8a"></span>Benchmark</span>
-      </div>
+        <h1>Progress Tracker</h1>
+        <div class="legend">
+            <span class="tag"><span class="dot" style="background:#7c9cff"></span>Shantha</span>
+            <span class="tag"><span class="dot" style="background:#55d6a9"></span>Sairam</span>
+            <span class="tag"><span class="dot" style="background:#ffd166"></span>Umesh</span>
+            <span class="tag"><span class="dot" style="background:#ff7a8a"></span>Benchmark</span>
+        </div>
     </header>
 
     <div class="grid">
-      <section class="card">
-        <h2>Growth Index</h2>
-        <div class="chart-wrap">
-          <canvas id="chart"></canvas>
-        </div>
-      </section>
 
-      <section class="card">
-        <h2>Add/Update Scores</h2>
-        <form id="form">
-          <div class="row">
-            <div class="field"><label>Sprint Version</label><input id="label" required /></div>
-          </div>
-          <div class="row">
-            <div class="field"><label>Shantha Vardhan</label><input id="s1" type="number" required></div>
-            <div class="field"><label>Sairam</label><input id="s2" type="number" required></div>
-            <div class="field"><label>Umesh</label><input id="s3" type="number" required></div>
-            <div class="field"><label>Benchmark</label><input id="bm" type="number" required></div>
-          </div>
-          <div class="row" style="margin-top:10px">
-            <button type="submit">Add point</button>
-            <button type="button" id="exportBtn">Export JSON</button>
-            <button type="button" id="importBtn">Import JSON</button>
-            <input type="file" id="importFile" accept="application/json" style="display:none" />
-          </div>
-        </form>
-      </section>
+        <!-- Chart -->
+        <section class="card">
+            <h2>Growth Index</h2>
+            <div class="chart-wrap">
+                <canvas id="chart"></canvas>
+            </div>
+        </section>
 
-      <section class="card" style="grid-column:1/-1">
-        <h2>Score Table</h2>
-        <table id="table">
-          <thead>
-            <tr>
-              <th>Sprint</th>
-              <th>Shantha Vardhan</th>
-              <th>Sairam</th>
-              <th>Umesh</th>
-              <th>Benchmark</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </section>
+        <!-- Criteria -->
+        <section class="card">
+            <h2>Performance Criteria</h2>
+            <table>
+                <tr><td>9 - 10</td><td>Exceptional Performance</td></tr>
+                <tr><td>6 – 9</td><td>On Track - Keep Going</td></tr>
+                <tr><td>5 - 6</td><td>Moderate – Needs Improvement</td></tr>
+                <tr><td>3 – 5</td><td>Underperforming – High Risk</td></tr>
+                <tr><td>1 – 3</td><td>Critical – Exit Consideration</td></tr>
+                <tr><td>0</td><td>Removed from Team</td></tr>
+            </table>
+        </section>
+
+        <!-- Average -->
+        <section class="card">
+            <h2>Current Average Score</h2>
+            <div class="row">
+                <div class="tag">Shantha: <strong id="avg1">–</strong></div>
+                <div class="tag">Sairam: <strong id="avg2">–</strong></div>
+                <div class="tag">Umesh: <strong id="avg3">–</strong></div>
+                <div class="tag">Benchmark: <strong id="avgBm">–</strong></div>
+            </div>
+        </section>
+
+        <!-- Form -->
+        <section class="card">
+            <h2>Add / Update Scores</h2>
+            <form id="form">
+                <div class="row">
+                    <div class="field"><label>Sprint</label><input id="label" required></div>
+                </div>
+                <div class="row">
+                    <div class="field"><label>Shantha</label><input id="s1" type="number" required></div>
+                    <div class="field"><label>Sairam</label><input id="s2" type="number" required></div>
+                    <div class="field"><label>Umesh</label><input id="s3" type="number" required></div>
+                    <div class="field"><label>Benchmark</label><input id="bm" type="number" required></div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <button>Add</button>
+                    <button type="button" id="exportBtn">Export JSON</button>
+                    <button type="button" id="importBtn">Import JSON</button>
+                    <input type="file" id="importFile" hidden>
+                </div>
+            </form>
+        </section>
+
+        <!-- Table -->
+        <section class="card" style="grid-column:1/-1">
+            <h2>Score Table</h2>
+            <table id="table">
+                <thead>
+                <tr><th>Sprint</th><th>Shantha</th><th>Sairam</th><th>Umesh</th><th>Benchmark</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
     </div>
-  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-let data = {
-  labels: [],
-  s1: [],
-  s2: [],
-  s3: [],
-  bm: []
-};
+    let data={labels:[],s1:[],s2:[],s3:[],bm:[]};
+    let chart;
 
-let chart;
+    const avg=(a)=>a.length?(a.reduce((x,y)=>x+y,0)/a.length).toFixed(2):"–";
 
-const formEl   = document.getElementById("form");
-const labelEl  = document.getElementById("label");
-const s1El     = document.getElementById("s1");
-const s2El     = document.getElementById("s2");
-const s3El     = document.getElementById("s3");
-const bmEl     = document.getElementById("bm");
-const exportBtn = document.getElementById("exportBtn");
-const importBtn = document.getElementById("importBtn");
-const importFile = document.getElementById("importFile");
-
-const ctx = document.getElementById("chart");
-
-async function initData() {
-  // 1. Try localStorage first (per-device saved data)
-  const saved = localStorage.getItem("student-data");
-  if (saved) {
-    try {
-      data = JSON.parse(saved);
-      if (!Array.isArray(data.labels)) throw new Error("bad");
-      return;
-    } catch (e) {
-      console.warn("Failed to parse localStorage, falling back to data.json");
+    function renderAverages(){
+      avg1.textContent=avg(data.s1);
+      avg2.textContent=avg(data.s2);
+      avg3.textContent=avg(data.s3);
+      avgBm.textContent=avg(data.bm);
     }
-  }
 
-  // 2. Otherwise, load from data.json in the repo (shared across devices)
-  try {
-    const res = await fetch("data.json", {cache: "no-store"});
-    if (res.ok) {
-      const json = await res.json();
-      if (
-        json &&
-        Array.isArray(json.labels) &&
-        Array.isArray(json.s1) &&
-        Array.isArray(json.s2) &&
-        Array.isArray(json.s3) &&
-        Array.isArray(json.bm)
-      ) {
-        data = json;
+    function renderTable(){
+      table.querySelector("tbody").innerHTML=data.labels.map((l,i)=>
+        `<tr><td>${l}</td><td>${data.s1[i]}</td><td>${data.s2[i]}</td><td>${data.s3[i]}</td><td>${data.bm[i]}</td></tr>`
+      ).join("");
+    }
+
+    async function init(){
+      const saved=localStorage.getItem("student-data");
+      if(saved) data=JSON.parse(saved);
+      else{
+        try{
+          const r=await fetch("data.json",{cache:"no-store"});
+          if(r.ok) data=await r.json();
+        }catch{}
       }
+
+      chart=new Chart(chartCanvas,{
+        type:"line",
+        data:{labels:data.labels,datasets:[
+          {label:"Shantha",data:data.s1,borderColor:"#7c9cff",tension:.3},
+          {label:"Sairam",data:data.s2,borderColor:"#55d6a9",tension:.3},
+          {label:"Umesh",data:data.s3,borderColor:"#ffd166",tension:.3},
+          {label:"Benchmark",data:data.bm,borderColor:"#ff7a8a",borderDash:[5,5],tension:.3}
+        ]},
+        options:{responsive:true,maintainAspectRatio:false}
+      });
+
+      renderTable();
+      renderAverages();
     }
-  } catch (e) {
-    console.warn("Could not load data.json, starting empty.", e);
-  }
-}
 
-function setupChart() {
-  chart = new Chart(ctx,{
-    type:"line",
-    data:{
-      labels:data.labels,
-      datasets:[
-        {label:"Shantha Vardhan",data:data.s1,borderColor:"#7c9cff",tension:.3},
-        {label:"Sairam",data:data.s2,borderColor:"#55d6a9",tension:.3},
-        {label:"Umesh",data:data.s3,borderColor:"#ffd166",tension:.3},
-        {label:"Benchmark",data:data.bm,borderColor:"#ff7a8a",borderDash:[5,5],tension:.3}
-      ]
-    },
-    options:{responsive:true,maintainAspectRatio:false}
-  });
-}
+    form.onsubmit=e=>{
+      e.preventDefault();
+      data.labels.push(label.value);
+      data.s1.push(+s1.value);
+      data.s2.push(+s2.value);
+      data.s3.push(+s3.value);
+      data.bm.push(+bm.value);
 
-function renderTable(){
-  const tbody = document.querySelector("#table tbody");
-  tbody.innerHTML = "";
-  data.labels.forEach((l,i)=>{
-    tbody.innerHTML += `<tr>
-      <td>${l}</td>
-      <td>${data.s1[i]}</td>
-      <td>${data.s2[i]}</td>
-      <td>${data.s3[i]}</td>
-      <td>${data.bm[i]}</td>
-    </tr>`;
-  });
-}
+      localStorage.setItem("student-data",JSON.stringify(data));
+      chart.update();
+      renderTable();
+      renderAverages();
+      form.reset();
+    };
 
-// Add point
-formEl.onsubmit = e => {
-  e.preventDefault();
-  const l = labelEl.value;
-  data.labels.push(l);
-  data.s1.push(+s1El.value);
-  data.s2.push(+s2El.value);
-  data.s3.push(+s3El.value);
-  data.bm.push(+bmEl.value);
+    exportBtn.onclick=()=>{
+      const b=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+      const a=document.createElement("a");
+      a.href=URL.createObjectURL(b);
+      a.download="students-growth-data.json";
+      a.click();
+    };
 
-  // Save per-device
-  localStorage.setItem("student-data",JSON.stringify(data));
-
-  chart.data.labels = data.labels;
-  chart.data.datasets[0].data = data.s1;
-  chart.data.datasets[1].data = data.s2;
-  chart.data.datasets[2].data = data.s3;
-  chart.data.datasets[3].data = data.bm;
-  chart.update();
-
-  renderTable();
-  formEl.reset();
-};
-
-// Export JSON (you can upload this as data.json to GitHub)
-exportBtn.onclick = () => {
-  const blob = new Blob([JSON.stringify(data,null,2)], {type: "application/json"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "students-growth-data.json";
-  a.click();
-  setTimeout(()=>URL.revokeObjectURL(url), 1000);
-};
-
-// Import JSON (from exported file)
-importBtn.onclick = () => importFile.click();
-
-importFile.onchange = (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = (ev) => {
-    try {
-      const obj = JSON.parse(ev.target.result);
-      if (
-        obj &&
-        Array.isArray(obj.labels) &&
-        Array.isArray(obj.s1) &&
-        Array.isArray(obj.s2) &&
-        Array.isArray(obj.s3) &&
-        Array.isArray(obj.bm)
-      ) {
-        data = obj;
-        localStorage.setItem("student-data", JSON.stringify(data));
-        chart.data.labels = data.labels;
-        chart.data.datasets[0].data = data.s1;
-        chart.data.datasets[1].data = data.s2;
-        chart.data.datasets[2].data = data.s3;
-        chart.data.datasets[3].data = data.bm;
+    importBtn.onclick=()=>importFile.click();
+    importFile.onchange=e=>{
+      const r=new FileReader();
+      r.onload=ev=>{
+        data=JSON.parse(ev.target.result);
+        localStorage.setItem("student-data",JSON.stringify(data));
+        chart.data.labels=data.labels;
+        chart.data.datasets[0].data=data.s1;
+        chart.data.datasets[1].data=data.s2;
+        chart.data.datasets[2].data=data.s3;
+        chart.data.datasets[3].data=data.bm;
         chart.update();
         renderTable();
-      } else {
-        alert("Invalid JSON format.");
-      }
-    } catch (err) {
-      alert("Could not read file.");
-    }
-  };
-  reader.readAsText(file);
-  e.target.value = "";
-};
+        renderAverages();
+      };
+      r.readAsText(e.target.files[0]);
+    };
 
-// Initialise everything
-(async function(){
-  await initData();
-  setupChart();
-  renderTable();
-})();
+    const chartCanvas=document.getElementById("chart");
+    init();
 </script>
 </body>
 </html>
